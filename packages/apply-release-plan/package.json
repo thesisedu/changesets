@@ -1,5 +1,5 @@
 {
-  "name": "@changesets/apply-release-plan",
+  "name": "@thesisedu/changeset-apply-release-plan",
   "version": "7.0.0",
   "description": "Takes a release plan and applies it to packages",
   "main": "dist/changesets-apply-release-plan.cjs.js",
@@ -17,7 +17,7 @@
     "./package.json": "./package.json"
   },
   "license": "MIT",
-  "repository": "https://github.com/changesets/changesets/tree/main/packages/apply-release-plan",
+  "repository": "https://github.com/thesisedu/changesets",
   "dependencies": {
     "@babel/runtime": "^7.20.1",
     "@changesets/config": "^3.0.0",

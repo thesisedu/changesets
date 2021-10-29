@@ -19,7 +19,7 @@ export function shouldUpdateDependencyBasedOnConfig(
   release: { version: string; type: VersionType },
   {
     depVersionRange,
-    depType,
+    depType
   }: {
     depVersionRange: string;
     depType:
@@ -30,13 +30,17 @@ export function shouldUpdateDependencyBasedOnConfig(
   },
   {
     minReleaseType,
-    onlyUpdatePeerDependentsWhenOutOfRange,
+    onlyUpdatePeerDependentsWhenOutOfRange
   }: {
     minReleaseType: "patch" | "minor";
     onlyUpdatePeerDependentsWhenOutOfRange: boolean;
   }
 ): boolean {
-  if (!semverSatisfies(release.version, depVersionRange)) {
+  if (
+    !semverSatisfies(release.version, depVersionRange, {
+      includePrerelease: true
+    })
+  ) {
     // Dependencies leaving semver range should always be updated
     return true;
   }
