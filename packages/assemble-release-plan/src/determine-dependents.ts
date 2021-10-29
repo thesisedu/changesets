@@ -3,7 +3,7 @@ import {
   DependencyType,
   PackageJSON,
   VersionType,
-  Config,
+  Config
 } from "@changesets/types";
 import { Package } from "@manypkg/get-packages";
 import { InternalRelease, PreInfo } from "./types";
@@ -26,7 +26,7 @@ export default function determineDependents({
   packagesByName,
   dependencyGraph,
   preInfo,
-  config,
+  config
 }: {
   releases: Map<string, InternalRelease>;
   packagesByName: Map<string, Package>;
@@ -50,7 +50,7 @@ export default function determineDependents({
       );
     }
     pkgDependents
-      .map((dependent) => {
+      .map(dependent => {
         let type: VersionType | undefined;
 
         const dependentPackage = packagesByName.get(dependent);
@@ -77,7 +77,7 @@ export default function determineDependents({
                 preInfo,
                 onlyUpdatePeerDependentsWhenOutOfRange:
                   config.___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH
-                    .onlyUpdatePeerDependentsWhenOutOfRange,
+                    .onlyUpdatePeerDependentsWhenOutOfRange
               })
             ) {
               type = "major";
@@ -88,7 +88,10 @@ export default function determineDependents({
                 .updateInternalDependents === "always" ||
                 !semverSatisfies(
                   incrementVersion(nextRelease, preInfo),
-                  versionRange
+                  versionRange,
+                  {
+                    includePrerelease: true
+                  }
                 ))
             ) {
               switch (depType) {
@@ -119,7 +122,7 @@ export default function determineDependents({
         return {
           name: dependent,
           type,
-          pkgJSON: dependentPackage.packageJson,
+          pkgJSON: dependentPackage.packageJson
         };
       })
       .filter(
@@ -147,7 +150,7 @@ export default function determineDependents({
             name,
             type,
             oldVersion: pkgJSON.version,
-            changesets: [],
+            changesets: []
           };
 
           pkgsToSearch.push(newDependent);
@@ -175,7 +178,7 @@ function getDependencyVersionRanges(
     "dependencies",
     "devDependencies",
     "peerDependencies",
-    "optionalDependencies",
+    "optionalDependencies"
   ] as const;
   const dependencyVersionRanges: {
     depType: DependencyType;
@@ -194,12 +197,12 @@ function getDependencyVersionRanges(
           versionRange === "workspace:*"
             ? // workspace:* actually means the current exact version, and not a wildcard similar to a reguler * range
               dependencyRelease.oldVersion
-            : versionRange.replace(/^workspace:/, ""),
+            : versionRange.replace(/^workspace:/, "")
       });
     } else {
       dependencyVersionRanges.push({
         depType: type,
-        versionRange,
+        versionRange
       });
     }
   }
@@ -213,7 +216,7 @@ function shouldBumpMajor({
   releases,
   nextRelease,
   preInfo,
-  onlyUpdatePeerDependentsWhenOutOfRange,
+  onlyUpdatePeerDependentsWhenOutOfRange
 }: {
   dependent: string;
   depType: DependencyType;
@@ -231,7 +234,9 @@ function shouldBumpMajor({
     // 1. If onlyUpdatePeerDependentsWhenOutOfRange set to true, bump major if the version is leaving the range.
     // 2. If onlyUpdatePeerDependentsWhenOutOfRange set to false, bump major regardless whether or not the version is leaving the range.
     (!onlyUpdatePeerDependentsWhenOutOfRange ||
-      !semverSatisfies(incrementVersion(nextRelease, preInfo), versionRange)) &&
+      !semverSatisfies(incrementVersion(nextRelease, preInfo), versionRange, {
+        includePrerelease: true
+      })) &&
     // bump major only if the dependent doesn't already has a major release.
     (!releases.has(dependent) ||
       (releases.has(dependent) && releases.get(dependent)!.type !== "major"))

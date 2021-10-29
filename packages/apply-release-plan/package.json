@@ -2,17 +2,17 @@
   "name": "@thesisedu/changeset-apply-release-plan",
   "version": "7.0.0",
   "description": "Takes a release plan and applies it to packages",
-  "main": "dist/changesets-apply-release-plan.cjs.js",
-  "module": "dist/changesets-apply-release-plan.esm.js",
+  "main": "dist/thesisedu-changeset-apply-release-plan.cjs.js",
+  "module": "dist/thesisedu-changeset-apply-release-plan.esm.js",
   "exports": {
     ".": {
       "types": {
-        "import": "./dist/changesets-apply-release-plan.cjs.mjs",
-        "default": "./dist/changesets-apply-release-plan.cjs.js"
+        "import": "./dist/thesisedu-changeset-apply-release-plan.cjs.mjs",
+        "default": "./dist/thesisedu-changeset-apply-release-plan.cjs.js"
       },
-      "module": "./dist/changesets-apply-release-plan.esm.js",
-      "import": "./dist/changesets-apply-release-plan.cjs.mjs",
-      "default": "./dist/changesets-apply-release-plan.cjs.js"
+      "module": "./dist/thesisedu-changeset-apply-release-plan.esm.js",
+      "import": "./dist/thesisedu-changeset-apply-release-plan.cjs.mjs",
+      "default": "./dist/thesisedu-changeset-apply-release-plan.cjs.js"
     },
     "./package.json": "./package.json"
   },

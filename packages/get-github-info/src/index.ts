@@ -23,7 +23,8 @@ function makeQuery(repos: ReposWithCommitsAndPRsToFetch) {
             owner: ${JSON.stringify(repo.split("/")[0])}
             name: ${JSON.stringify(repo.split("/")[1])}
           ) {
-            ${repos[repo]
+            ${[...new Set(repos[repo].map(d => JSON.stringify(d)))]
+              .map(d => JSON.parse(d))
               .map((data) =>
                 data.kind === "commit"
                   ? `a${data.commit}: object(expression: ${JSON.stringify(

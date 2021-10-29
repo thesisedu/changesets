@@ -1,23 +1,23 @@
 {
-  "name": "@changesets/assemble-release-plan",
+  "name": "@thesisedu/changeset-assemble-release-plan",
   "version": "6.0.0",
   "description": "Reads changesets and adds information on dependents that need bumping",
-  "main": "dist/changesets-assemble-release-plan.cjs.js",
-  "module": "dist/changesets-assemble-release-plan.esm.js",
+  "main": "dist/thesisedu-changeset-assemble-release-plan.cjs.js",
+  "module": "dist/thesisedu-changeset-assemble-release-plan.esm.js",
   "exports": {
     ".": {
       "types": {
-        "import": "./dist/changesets-assemble-release-plan.cjs.mjs",
-        "default": "./dist/changesets-assemble-release-plan.cjs.js"
+        "import": "./dist/thesisedu-changeset-assemble-release-plan.cjs.mjs",
+        "default": "./dist/thesisedu-changeset-assemble-release-plan.cjs.js"
       },
-      "module": "./dist/changesets-assemble-release-plan.esm.js",
-      "import": "./dist/changesets-assemble-release-plan.cjs.mjs",
-      "default": "./dist/changesets-assemble-release-plan.cjs.js"
+      "module": "./dist/thesisedu-changeset-assemble-release-plan.esm.js",
+      "import": "./dist/thesisedu-changeset-assemble-release-plan.cjs.mjs",
+      "default": "./dist/thesisedu-changeset-assemble-release-plan.cjs.js"
     },
     "./package.json": "./package.json"
   },
   "license": "MIT",
-  "repository": "https://github.com/changesets/changesets/tree/main/packages/assemble-release-plan",
+  "repository": "https://github.com/thesisedu/changesets",
   "dependencies": {
     "@babel/runtime": "^7.20.1",
     "@changesets/errors": "^0.2.0",
